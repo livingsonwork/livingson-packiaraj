@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livingson | Finance & Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --cream: #f8f5ef;
+    --warm: #e8e2d6;
+    --accent: #1a3a5c;
+    --gold: #b8922b;
+    --muted: #6b6560;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(248,245,239,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--warm);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 3rem 5rem 4rem;
+  }
+
+  .hero-tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid var(--gold);
+    padding-left: 1rem;
+    line-height: 1.8;
+  }
+
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    padding: 0.85rem 2.2rem;
+    background: var(--accent);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #0e2847; transform: translateY(-1px); }
+
+  .btn-outline {
+    padding: 0.85rem 2.2rem;
+    background: transparent;
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--accent); color: var(--white); }
+
+  .hero-right {
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-monogram {
+    font-family: 'Playfair Display', serif;
+    font-size: 14rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.07);
+    user-select: none;
+    position: absolute;
+  }
+
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.15);
+  }
+
+  .stat-box {
+    background: var(--accent);
+    padding: 2rem 1.8rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 4rem; }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 0.97rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-body { font-size: 1rem; color: var(--muted); line-height: 1.9; }
+  .about-body p + p { margin-top: 1.2rem; }
+
+  .about-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+
+  .highlight-chip {
+    padding: 0.65rem 1rem;
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .about-image-block {
+    background: var(--accent);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .cert-badge {
+    background: var(--cream);
+    border: 1px solid var(--warm);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .cert-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .cert-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .cert-detail {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--cream); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--warm);
+    border: 1.5px solid var(--warm);
+    margin-top: 3rem;
+  }
+
+  .skill-group {
+    background: var(--white);
+    padding: 2rem;
+  }
+
+  .skill-group-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--warm);
+  }
+
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skill-list li:last-child { border-bottom: none; }
+
+  .skill-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--warm);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 0.35rem;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateX(-4.5px);
+  }
+
+  .timeline-date {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+  }
+
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-org {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-size: 0.75rem;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--cream); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--warm);
+    border: 1.5px solid var(--warm);
+    margin-top: 3rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .project-card:hover { background: var(--accent); }
+  .project-card:hover .project-title,
+  .project-card:hover .project-desc,
+  .project-card:hover .project-tag { color: rgba(255,255,255,0.8); }
+  .project-card:hover .project-title { color: var(--white); }
+  .project-card:hover .project-num { color: rgba(255,255,255,0.2); }
+  .project-card:hover .proj-icon { background: rgba(255,255,255,0.1); color: var(--white); }
+
+  .project-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--warm);
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .proj-icon {
+    width: 42px; height: 42px;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    color: var(--accent);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: color 0.2s;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+    transition: color 0.2s;
+  }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--cream);
+    padding: 0.3rem 0.7rem;
+    transition: color 0.2s, background 0.2s;
+  }
+  .project-card:hover .project-tag { background: rgba(255,255,255,0.1); }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--accent); }
+  #education .section-eyebrow { color: rgba(184,146,43,0.85); }
+  #education .section-heading { color: var(--white); }
+  #education .section-sub { color: rgba(255,255,255,0.55); }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    margin-top: 3rem;
+  }
+
+  .edu-card {
+    background: rgba(255,255,255,0.04);
+    padding: 2rem;
+  }
+
+  .edu-year {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-inst {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.75rem;
+  }
+
+  .edu-detail {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--white); }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info { }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--warm);
+  }
+  .contact-row:last-child { border-bottom: none; }
+
+  .c-icon {
+    width: 40px; height: 40px;
+    background: var(--accent);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .c-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.2rem;
+  }
+
+  .c-value {
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .form-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-input {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--warm);
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border 0.2s;
+  }
+  .form-input:focus { border-color: var(--accent); }
+
+  textarea.form-input { min-height: 120px; resize: vertical; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FADE ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Livingson</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Finance & Analytics Professional</p>
+    <h1 class="hero-name">Living<br>son</h1>
+    <p class="hero-title">MBA candidate in Finance & Business Analytics · Equity Research · Power BI · Tableau · NISM Series XV</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Work</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-monogram">L</div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <span class="stat-num">MBA</span>
+        <span class="stat-label">Finance & Analytics</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">78%</span>
+        <span class="stat-label">NISM Practice Score</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Tools Proficient</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Years of Study</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-in">
+    <p class="section-eyebrow">About Me</p>
+    <h2 class="section-heading">Finance meets<br>data-driven thinking</h2>
+    <div class="about-body">
+      <p>I'm an MBA candidate (Finance & Business Analytics, 2024–2026) at Hindusthan Arts & Science College, Coimbatore, with a background in BCom and a passion for equity research, valuation, and financial analytics.</p>
+      <p>My internship at Angel One sharpened my technical analysis skills — applying RSI, SMA, and Pivot Point frameworks to FMCG stocks. I also run a small food & beverage business, Garden Juice and Snacks Corner, in Namakkal, giving me real-world exposure to P&L management.</p>
+      <p>Currently preparing for the NISM Series XV Research Analyst certification, and building toward CFA Level 1 as the next milestone.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-chip">Equity Research</div>
+      <div class="highlight-chip">DCF Valuation</div>
+      <div class="highlight-chip">Financial Modeling</div>
+      <div class="highlight-chip">Technical Analysis</div>
+      <div class="highlight-chip">Business Intelligence</div>
+      <div class="highlight-chip">SPSS Research</div>
+    </div>
+  </div>
+  <div class="about-image-block fade-in">
+    <div class="cert-badge">
+      <div class="cert-icon">📊</div>
+      <div>
+        <div class="cert-name">NISM Series XV</div>
+        <div class="cert-detail">Research Analyst Certification — In Progress</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <div class="cert-icon">🎓</div>
+      <div>
+        <div class="cert-name">NPTEL — IIT Madras</div>
+        <div class="cert-detail">AI for Investments · Financial Institutions & Markets</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <div class="cert-icon">📈</div>
+      <div>
+        <div class="cert-name">Angel One Internship</div>
+        <div class="cert-detail">FMCG Technical Analysis · RSI · SMA</div>
+      </div>
+    </div>
+    <div class="cert-badge">
+      <div class="cert-icon">🏪</div>
+      <div>
+        <div class="cert-name">Entrepreneur</div>
+        <div class="cert-detail">Garden Juice & Snacks Corner, Namakkal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <h2 class="section-heading">Skills & Tools</h2>
+  <p class="section-sub">A toolkit built across finance, analytics, and research — applied to real-world equity and business problems.</p>
+
+  <div class="skills-grid fade-in">
+    <div class="skill-group">
+      <div class="skill-group-title">Analytics & BI</div>
+      <ul class="skill-list">
+        <li>Power BI <span class="skill-dot"></span></li>
+        <li>Tableau <span class="skill-dot"></span></li>
+        <li>Advanced Excel <span class="skill-dot"></span></li>
+        <li>SPSS <span class="skill-dot"></span></li>
+        <li>Business Intelligence <span class="skill-dot"></span></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Finance & Valuation</div>
+      <ul class="skill-list">
+        <li>DCF / FCFF <span class="skill-dot"></span></li>
+        <li>WACC & CAPM <span class="skill-dot"></span></li>
+        <li>Financial Modeling <span class="skill-dot"></span></li>
+        <li>Equity Research <span class="skill-dot"></span></li>
+        <li>Financial Reporting <span class="skill-dot"></span></li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Technical Analysis</div>
+      <ul class="skill-list">
+        <li>RSI <span class="skill-dot"></span></li>
+        <li>SMA / EMA <span class="skill-dot"></span></li>
+        <li>Pivot Points <span class="skill-dot"></span></li>
+        <li>Chart Patterns <span class="skill-dot"></span></li>
+        <li>Stock Screening <span class="skill-dot"></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="fade-in">
+    <p class="section-eyebrow">Work History</p>
+    <h2 class="section-heading">Experience</h2>
+    <p class="section-sub">Practical exposure in financial markets, research, and entrepreneurship.</p>
+  </div>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-date">Internship · 2024</div>
+      <div class="timeline-role">Research Analyst Intern</div>
+      <div class="timeline-org">Angel One Ltd. · Equity & Technical Analysis</div>
+      <ul class="timeline-bullets">
+        <li>Conducted technical analysis on FMCG sector stocks using RSI and SMA frameworks</li>
+        <li>Developed Pivot Point-based entry/exit signal templates in Excel</li>
+        <li>Produced research summaries for client-facing equity reports</li>
+        <li>Identified trend patterns across 15+ scrips for portfolio strategy recommendations</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Ongoing · 2021 – Present</div>
+      <div class="timeline-role">Founder & Operator</div>
+      <div class="timeline-org">Garden Juice & Snacks Corner · Namakkal, Tamil Nadu</div>
+      <ul class="timeline-bullets">
+        <li>Manage day-to-day operations, procurement, and P&L of an F&B micro-enterprise</li>
+        <li>Applied basic financial reporting and cash-flow tracking using Excel</li>
+        <li>Hands-on experience in pricing strategy and vendor negotiation</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Research Project · 2023</div>
+      <div class="timeline-role">Primary Researcher</div>
+      <div class="timeline-org">Rural Banking Adoption Study · SPSS Analysis</div>
+      <ul class="timeline-bullets">
+        <li>Designed and administered structured survey for rural banking behaviour study</li>
+        <li>Used SPSS for statistical analysis — regression, correlation, and hypothesis testing</li>
+        <li>Presented findings in academic report format for MBA coursework</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-eyebrow">Portfolio</p>
+  <h2 class="section-heading">Projects</h2>
+  <p class="section-sub">Finance and analytics projects built during coursework, internships, and self-directed study.</p>
+
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="proj-icon">📈</div>
+      <div class="project-title">Stock Research Report</div>
+      <div class="project-desc">Full-stack equity research report modelled on sell-side format — fundamental analysis, DCF valuation, target price, and risk factors.</div>
+      <div class="project-tags">
+        <span class="project-tag">Excel</span>
+        <span class="project-tag">DCF</span>
+        <span class="project-tag">Equity</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="proj-icon">📊</div>
+      <div class="project-title">Personal Finance Dashboard</div>
+      <div class="project-desc">Interactive Excel dashboard tracking income, expenses, savings rate, and investment allocation with automated charts.</div>
+      <div class="project-tags">
+        <span class="project-tag">Excel</span>
+        <span class="project-tag">Dashboard</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="proj-icon">🏢</div>
+      <div class="project-title">Business Intelligence Case Study</div>
+      <div class="project-desc">BI analysis for MBA coursework — KPIs, data visualization with Power BI, and decision-support reporting for a hypothetical retail firm.</div>
+      <div class="project-tags">
+        <span class="project-tag">Power BI</span>
+        <span class="project-tag">MBA</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="proj-icon">💡</div>
+      <div class="project-title">Value Investing Case Study</div>
+      <div class="project-desc">Deep-dive on a value investing thesis — qualitative moat analysis, quantitative screening, and margin-of-safety calculation using Graham metrics.</div>
+      <div class="project-tags">
+        <span class="project-tag">Value</span>
+        <span class="project-tag">Research</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="proj-icon">🔬</div>
+      <div class="project-title">FMCG Technical Analysis</div>
+      <div class="project-desc">RSI & SMA-based signal framework applied to FMCG sector during Angel One internship — backtested across 15+ scrips over 6-month windows.</div>
+      <div class="project-tags">
+        <span class="project-tag">RSI</span>
+        <span class="project-tag">SMA</span>
+        <span class="project-tag">TA</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <div class="proj-icon">🏦</div>
+      <div class="project-title">Rural Banking Adoption Study</div>
+      <div class="project-desc">Academic research project using SPSS — survey design, regression analysis, and hypothesis testing on digital banking uptake in rural Tamil Nadu.</div>
+      <div class="project-tags">
+        <span class="project-tag">SPSS</span>
+        <span class="project-tag">Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-eyebrow">Academic Background</p>
+  <h2 class="section-heading">Education</h2>
+  <p class="section-sub">Finance-oriented academic path with applied certifications and IIT-level online courses.</p>
+
+  <div class="edu-grid fade-in">
+    <div class="edu-card">
+      <div class="edu-year">2024 – 2026</div>
+      <div class="edu-degree">MBA — Finance & Business Analytics</div>
+      <div class="edu-inst">Hindusthan Arts & Science College, Coimbatore</div>
+      <div class="edu-detail">Specialisation in Financial Management, Business Analytics, and Equity Research. Active NISM Series XV candidate.</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Completed · 2023</div>
+      <div class="edu-degree">BCom — Commerce</div>
+      <div class="edu-inst">Undergraduate · Tamil Nadu</div>
+      <div class="edu-detail">Foundation in accounting, economics, business law, and financial management. Led to MBA pathway in finance.</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">NPTEL · IIT Madras</div>
+      <div class="edu-degree">AI for Investments</div>
+      <div class="edu-inst">Indian Institute of Technology, Madras</div>
+      <div class="edu-detail">12-week course covering machine learning applications in portfolio management, algorithmic trading, and market prediction.</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">NPTEL · IIT Madras</div>
+      <div class="edu-degree">Financial Institutions & Markets</div>
+      <div class="edu-inst">Indian Institute of Technology, Madras</div>
+      <div class="edu-detail">12-week course on banking structures, capital markets, regulatory frameworks (SEBI, RBI), and financial intermediation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow">Let's Connect</p>
+  <h2 class="section-heading">Get in Touch</h2>
+  <p class="section-sub">Open to analyst roles, research internships, and finance opportunities across India.</p>
+
+  <div class="contact-layout fade-in">
+    <div class="contact-info">
+      <div class="contact-row">
+        <div class="c-icon">📍</div>
+        <div>
+          <div class="c-label">Location</div>
+          <div class="c-value">Tamil Nadu, India</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">📚</div>
+        <div>
+          <div class="c-label">Currently</div>
+          <div class="c-value">MBA Final Year · NISM Series XV Prep</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">🎯</div>
+        <div>
+          <div class="c-label">Open To</div>
+          <div class="c-value">Equity Research · Financial Analyst · BI Analyst roles</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">📷</div>
+        <div>
+          <div class="c-label">Instagram</div>
+          <div class="c-value">@ivylson</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-input" placeholder="Your message..."></textarea>
+      </div>
+      <button class="btn-primary" style="width: fit-content;">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Livingson</div>
+  <div class="footer-note">MBA · Finance & Analytics · Tamil Nadu, India</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
